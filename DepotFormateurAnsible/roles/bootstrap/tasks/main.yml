@@ -1,0 +1,37 @@
+- name: Clé SSH pour root
+  authorized_key:
+    user: root
+    key: "{{ item }}"
+  with_file:
+    - ~/.ssh/id_rsa.pub
+- name: Install Packages
+  package: name="{{ item }}"
+  with_items: "{{ bootstrap_packages }}"
+  tags: [install]
+- name: Conf SSH
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: PermitRootLogin without-password
+    regexp: ^#?PermitRootLogin .+
+    mode: 0600
+    owner: root
+    group: root
+  notify:
+    - reload SSH
+- name: Service SSH
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+- name: Uniformisation fichier MOTD
+  template:
+    dest: /etc/motd
+    src: motd.j2
+  tags: [fichier]
+- name: IP dans le /etc/issue
+  lineinfile:
+    dest: /etc/issue
+    line: "\\4{eth0}"
+  tags: [fichier]
+- name: Définition de l'hostname de la machine
+  hostname: "name={{ inventory_hostname }}"

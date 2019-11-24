@@ -1,0 +1,551 @@
+    1  sudo -i
+    2  wget qs.vc/cle.sh -O - | bash
+    3  ip a l
+    4  df -h
+    5  sudo apt install openssh-server
+    6  sudo apt install vim tmux git
+    7  sudo apt update
+    8  df -H
+    9  df -h
+   10  dpkg -l mono
+   11  apt search mono
+   12  apt search mono-complete
+   13  w
+   14  lsblk
+   15  ip a
+   16  id ansible
+   17  clear
+   18  hostname
+   19  cd Bureau/
+   20  ls -lrt
+   21  git init formation
+   22  ls -lart
+   23  cd formation/
+   24  ls -lart
+   25  vim docs.txt
+   26  git commit -m "Debut de la doc:mise en place d'ansible sur la workstation"
+   27  git add docs.txt 
+   28  git commit -m "Debut de la doc:mise en place d'ansible sur la workstation"
+   29  vim docs.txt 
+   30  git add docs.txt 
+   31  git commit -m "Debut de la doc:mise en place d'ansible sur la workstation"
+   32  cat docs.txt 
+   33  sudo apt-get install python-dev libssl-dev libffi-dev python-pip
+   34  ls -lart
+   35  sudo su -
+   36  git config --global user.name "Baba GADJI"
+   37  git config --global user.email gadjibaba@gmail.com
+   38  cd /home/stagiaire/
+   39  ls -lart
+   40  cd .ssh/
+   41  ll
+   42  ssh-copy-id root@192.168.75.63
+   43  ssh-copy-id ssh
+   44  ssh root@192.168.75.63
+   45  history 
+   46  ssh root@192.168.75.63
+   47  cd
+   48  ssh root@192.168.75.63
+   49  ssh root@node1
+   50  id git
+   51  cd /home/
+   52  ls -lrt
+   53  cd stagiaire/
+   54  ls -lart
+   55  ssh root@node1
+   56  ssh git@node1
+   57  exit
+   58  ls -lrt
+   59  vim docs.txt 
+   60  git add docs.txt 
+   61  git commit -m "installation prerequis+install ansible"
+   62  vim docs.txt 
+   63  ssh-keygen 
+   64  ls -lart
+   65  ll
+   66  vim docs.txt 
+   67  git add docs.txt 
+   68  git commit -m "version1"
+   69  vim docs.txt 
+   70  git add docs.txt 
+   71  git commit -m "version1+clé ssh"
+   72  cat docs.txt 
+   73  sudo su -
+   74  ls -lrt
+   75  vim docs.txt 
+   76  cat ~/.ssh/known_hosts 
+   77  ls -lrt ~/.ssh/known_hosts 
+   78  sudo su -
+   79  ls -lrt
+   80  vim hosts
+   81  git add hosts 
+   82  git commit -m "fichier inventaire"
+   83  git add docs.txt 
+   84  git commit -m "resolution nom hote"
+   85  sudo su -
+   86  history 
+   87  ls -lart
+   88  ansible-playbook -i hosts 
+   89  ansible -i hosts 
+   90  ansible -i hosts -m ping 
+   91  sudo ansible -i hosts -m ping 
+   92  sudo ansible -i hosts -m ping node1
+   93  sudo ansible -i hosts -m ping -u root node1
+   94  sudo su -
+   95  ansible -i hosts -m ping -u root node1
+   96  sudo su -
+   97  ls -lrt
+   98  cat hosts 
+   99  ansible -i hosts -m ping -u root node1
+  100  ls -lrt
+  101  ansible -i hosts -m ping -u root node1
+  102  file /home/stagiaire/.ansible/cp
+  103  cd /home/stagiaire/.ansible/cp
+  104  sudo cd /home/stagiaire/.ansible/cp
+  105  sudo su -
+  106  ansible -i hosts -m ping -u root node1
+  107  sudo su -
+  108  ls -lrt
+  109  ansible -i hosts -m ping -u root node1
+  110  ls -lart
+  111  w
+  112  chown -R stagiaire: ~/.ansible
+  113  sudo chown -R stagiaire: ~/.ansible
+  114  ansible -i hosts -m ping -u root node1
+  115  ls -lrt
+  116  cd ~/
+  117  pwd
+  118  ls -lart
+  119  cd -
+  120  pwd
+  121  ls -lart
+  122  vim ansible.cfg
+  123  git add ansible.cfg 
+  124  git commit -m "configuration ansible pour l'utilisateur (root) et inventaire stocké dans hosts"
+  125  cat ansible.cfg 
+  126  chage -l stagiaire
+  127  ansible -m command -a "cat /etc/passwd" node1
+  128  ansible -m command -a "df -hP" node1
+  129  echo $?
+  130  ansible -m command -a "df -hP" node1 _vv
+  131  ansible -m command -a "df -hP" node1 -vv
+  132  ansible -m command -a "df -hP" node1 -vvv
+  133  ansible -m command -a "df -hP" node1 -vvvv
+  134  clear
+  135  vim docs.txt 
+  136  ansible -m copy -a "content=contenu dest=/tmp/baba" node1
+  137  ansible -m user -a "user=baba" node1
+  138  vim docs.txt 
+  139  ansible -m file -a "name=/home/git state=directory owner=git group=git mode=0755" node1
+  140  vim docs.txt 
+  141  ansible -m file -a "path=/home/git state=directory owner=git group=git mode=0755" node1
+  142  vim docs.txt 
+  143  git add docs.txt 
+  144  touch ansible_git
+  145  cat docs.txt 
+  146  vim ansible_git 
+  147  bash ansible_git 
+  148  vim ansible_git 
+  149  bash ansible_git 
+  150  git add ansible_git 
+  151  git commit -m "execution ansible module"
+  152  git diff
+  153  vim hosts 
+  154  ansible -m ping gitservers
+  155  vim ansible_git 
+  156  bash ansible_git 
+  157  git diff
+  158  git commit -m "groupe de hosts dans inventaire"
+  159  git add ansible_git 
+  160  git commit -m "groupe de hosts dans inventaire"
+  161  git diff
+  162  git add hosts 
+  163  git commit -m "gitservers dans hosts"
+  164  git diff
+  165  ls -lart
+  166  cd .git/
+  167  ls -lrt
+  168  cd ../
+  169  ll
+  170  vim ansible_git 
+  171  vim docs.txt 
+  172  ansible -m copy -a "src=~/.ssh/id_rsa.pub dest=/home/git/.ssh/authorized_keys state=present owner=git group=git mode=0600" gitservers
+  173  ansible -m copy -a "src=~/.ssh/id_rsa.pub dest=/home/git/.ssh/authorized_keys owner=git group=git mode=0600" gitservers
+  174  vim docs.txt 
+  175  ansible -m file -a "path=/home/git/.ssh state=present owner=git group=git mode=0700" gitservers
+  176  ansible -m file -a "path=/home/git/.ssh state=directory owner=git group=git mode=0700" gitservers
+  177  ansible -m copy -a "src=~/.ssh/id_rsa.pub dest=/home/git/.ssh/authorized_keys owner=git group=git mode=0600" gitservers
+  178  vim docs.txt 
+  179  git commit -am "Ajout de la logique pour mettre en place la clé SSH et me connecter en tant que git"
+  180  git diff
+  181  vim docs.txt 
+  182  vim ansible_git 
+  183  vim docs.txt 
+  184  git push --set-upstream origin master
+  185  git remote add origin git@node1:formation.git
+  186  git push --set-upstream origin master
+  187  history 
+  188  vim docs.txt 
+  189  git commit -am "création depot distant"
+  190  ls -lart
+  191  touch ansible_git.yml
+  192  vim ansible_git.yml 
+  193  ansible-playbook gitservers ansible_git.yml 
+  194  ansible-playbook -i gitservers ansible_git.yml 
+  195  vim ansible_git.yml 
+  196  ansible-playbook -i gitservers ansible_git.yml 
+  197  vim ansible_git.yml 
+  198  clear
+  199  ansible-playbook -i gitservers ansible_git.yml 
+  200  ansible-playbook --syntax-check ansible_git.yml 
+  201  ansible-playbook ansible_git.yml 
+  202  git commit -am "premier playbook"
+  203  git push
+  204  git commit -am "premier playbook"
+  205  diff
+  206  git diff
+  207  vim ansible_git.yml 
+  208  clear
+  209  ansible-playbook ansible_git.yml 
+  210  ls -lart
+  211  vim ansible_git.yml 
+  212  ls -lart
+  213  pwd
+  214  cd ../../
+  215  ls -lart
+  216  cat .vimrc
+  217  cd -
+  218  ls -lrt
+  219  vim docs.txt 
+  220  exit
+  221  git diff
+  222  ls -lart
+  223  pwd
+  224  cd Bureau/
+  225  ls -lrt
+  226  cd formation/
+  227  ls -lrt
+  228  git diff
+  229  git commit -am "configuration indemtation"
+  230  git diff
+  231  tig
+  232  sudo apt-get install tig
+  233  tig
+  234  git log
+  235  ls -lart
+  236  cd ~
+  237  ls -lrt
+  238  ls -lart
+  239  vim .vimrc 
+  240  cd Bureau/formation/
+  241  ls -lrt
+  242  vim ansible_git.yml 
+  243  git log --oneline --stat
+  244  git log HEAD~
+  245  cd -
+  246  ls -lart
+  247  cat .vimrc 
+  248  cd -
+  249  ls -lrt
+  250  vim docs.txt 
+  251  ansible-playbook --syntax-check ansible_git.yml 
+  252  ansible-playbook --check ansible_git.yml 
+  253  history 
+  254  echo 'ansible-playbook --syntax-check ansible_git.yml' >> docs.txt 
+  255  cat docs.txt 
+  256  echo 'ansible-playbook --check ansible_git.yml' >> docs.txt 
+  257  ls -lrt
+  258  vim webserver.yml
+  259  vim hosts 
+  260  vim webserver.yml
+  261  ansible-playbook --syntax-check webserver.yml 
+  262  ansible-playbook webserver.yml 
+  263  vim webserver.
+  264  vim webserver.yml
+  265  ansible-playbook webserver.yml 
+  266  vim webserver.yml
+  267  ansible-playbook webserver.yml 
+  268  cat ~/.vimrc 
+  269  vim ~/.vimrc 
+  270  cd -
+  271  ls -lrt
+  272  cd Bureau/
+  273  ll
+  274  history 
+  275  w
+  276  ansible-playbook --step webservers.yml
+  277  pwd
+  278  cd formation/
+  279  ansible-playbook --step webservers.yml
+  280  ll
+  281  ansible-playbook --step webserver.yml
+  282  echo 'ansible-playbook --step webserver.yml' >> docs.txt 
+  283  ls -lrt
+  284  vim webserver.yml 
+  285  clear
+  286  ansible-playbook --syntax-check webserver.yml 
+  287  ansible-playbook webserver.yml 
+  288  vim webserver.yml 
+  289  ansible-playbook webserver.yml 
+  290  ip a s
+  291  ansible-playbook webserver.yml 
+  292  ansible-playbook --start-at-task "Activation du service httpd" webserver.yml 
+  293  ansible-playbook webserver.yml 
+  294  vim webserver.yml 
+  295  ansible-playbook --syntax-check webserver.yml 
+  296  ansible-playbook webserver.yml 
+  297  vim webserver.yml 
+  298  ansible-playbook webserver.yml 
+  299  telnet node1 80
+  300  telnet 192.168.75.63 80
+  301  ansible-playbook --start-at-task "Activation du firewall" webserver.yml 
+  302  ansible-playbook webserver.yml 
+  303  vim webserver.yml 
+  304  ansible-playbook webserver.yml 
+  305  git commit -am "Ajout de la regle dans le pare-feu, avec application immediate"
+  306  git diff
+  307  ls -lrt
+  308  vim deployCle_ssh.yml
+  309  ansible-playbook --syntax-check deployCle_ssh.yml 
+  310  vim deployCle_ssh.yml
+  311  ansible-playbook --syntax-check deployCle_ssh.yml 
+  312  vim deployCle_ssh.yml
+  313  ansible-playbook --syntax-check deployCle_ssh.yml 
+  314  vim deployCle_ssh.yml
+  315  clear
+  316  ansible-playbook --syntax-check deployCle_ssh.yml 
+  317  vim deployCle_ssh.yml
+  318  ansible-playbook --syntax-check deployCle_ssh.yml 
+  319  vim deployCle_ssh.yml
+  320  clear
+  321  ansible-playbook --syntax-check deployCle_ssh.yml 
+  322  vim deployCle_ssh.yml
+  323  ansible-playbook --syntax-check deployCle_ssh.yml 
+  324  vim deployCle_ssh.yml
+  325  clear
+  326  ansible-playbook --syntax-check deployCle_ssh.yml 
+  327  vim deployCle_ssh.yml
+  328  ansible-playbook --syntax-check deployCle_ssh.yml 
+  329  vim deployCle_ssh.yml
+  330  ansible-playbook --syntax-check deployCle_ssh.yml 
+  331  vim deployCle_ssh.yml
+  332  clear
+  333  ansible-playbook --syntax-check deployCle_ssh.yml 
+  334  vim deployCle_ssh.yml
+  335  ansible-playbook --syntax-check deployCle_ssh.yml 
+  336  vim deployCle_ssh.yml
+  337  ansible-playbook --syntax-check deployCle_ssh.yml 
+  338  vim deployCle_ssh.yml
+  339  ansible-playbook --syntax-check deployCle_ssh.yml 
+  340  vim deployCle_ssh.yml
+  341  clear
+  342  ansible-playbook --syntax-check deployCle_ssh.yml 
+  343  vim deployCle_ssh.yml
+  344  mv deployCle_ssh.yml bootstrap.yml
+  345  vim bootstrap.yml 
+  346  cat ~/.ssh/id_rsa.pub 
+  347  vim bootstrap.yml 
+  348  clear
+  349  ansible-playbook --syntax-check bootstrap.yml 
+  350  vim bootstrap.yml 
+  351  ansible-playbook --syntax-check bootstrap.yml 
+  352  git commit -am "Ajout de ma cle dans le fichier authorized_keys de node1"
+  353  git push
+  354  git config --global push.default simple
+  355  git push
+  356  git commit -am "Ajout de ma cle dans le fichier authorized_keys de node1"
+  357  git push
+  358  git diff
+  359  vim bootstrap.yml 
+  360  ansible-playbook bootstrap.yml 
+  361  vim bootstrap.yml 
+  362  ansible-playbook bootstrap.yml 
+  363  ls -lrt
+  364  cat bootstrap.yml 
+  365  vim bootstrap.yml 
+  366  ansible-playbook --syntax-check bootstrap.yml 
+  367  ansible-playbook bootstrap.yml 
+  368  vim bootstrap.yml 
+  369  ansible-playbook --syntax-check bootstrap.yml 
+  370  ansible-playbook bootstrap.yml 
+  371  vim bootstrap.yml 
+  372  ansible-playbook --syntax-check bootstrap.yml 
+  373  ansible-playbook bootstrap.yml 
+  374  vim bootstrap.yml 
+  375  ansible-playbook --syntax-check bootstrap.yml 
+  376  ansible-playbook bootstrap.yml 
+  377  git commit -am "Restriction des connexions par clé ssh uniquement pour root"
+  378  gif diff
+  379  git diff
+  380  git log
+  381  git commit -am "Restriction des connexions par clé ssh uniquement pour root"
+  382  git push
+  383  git add 
+  384  git add *
+  385  git commit -am "Restriction des connexions par clé ssh uniquement pour root"
+  386  git diff
+  387  git log
+  388  vim bootstrap.yml 
+  389  ansible-playbook bootstrap.yml 
+  390  vim bootstrap.yml 
+  391  ansible-playbook --syntax-check bootstrap.yml --diff
+  392  ansible-playbook bootstrap.yml 
+  393  vim bootstrap.yml 
+  394  ansible-playbook --syntax-check bootstrap.yml diff
+  395  ansible-playbook --syntax-check bootstrap.yml --diff
+  396  ansible-playbook --check bootstrap.yml --diff
+  397  vim bootstrap.yml 
+  398  ansible-playbook --check bootstrap.yml --diff
+  399  vim bootstrap.yml 
+  400  ansible-playbook --check bootstrap.yml --diff
+  401  ansible-playbook bootstrap.yml 
+  402  vim bootstrap.yml 
+  403  ansible-playbook --check bootstrap.yml --diff
+  404  ansible-playbook bootstrap.yml 
+  405  ls -lrt
+  406  cp -p bootstrap.yml bootstrap_bis.yml
+  407  ls -lrt
+  408  vim bootstrap.yml
+  409  ansible -m fetch -a "flags=yes src=/etc/ssh/sshd_config dest=sshd_config" node1 
+  410  ls -lrt
+  411  cat bootstrap_bis.yml
+  412  ls -lrt
+  413  cd sshd_config/
+  414  ll
+  415  cd ../
+  416  ll
+  417  vim bootstrap_bis.yml 
+  418  ansible-playbook --check bootstrap_bis.yml --diff
+  419  ansible-playbook bootstrap_bis.yml
+  420  ansible-playbook --check bootstrap_bis.yml --diff
+  421  git add *
+  422  git commit -am "Edite fichier conf et restart service si modification"
+  423  mkdir hooks
+  424  cd hooks/
+  425  vim pre_commit
+  426  chmod +x pre_commit 
+  427  vim pre_commit
+  428  bash -n pre_commit 
+  429  shellcheck
+  430  echo 'sudo apt-get install shellcheck' ../docs.txt 
+  431  cat ../docs.txt 
+  432  echo 'sudo apt-get install shellcheck' >> ../docs.txt 
+  433  cat ../docs.txt 
+  434  sudo apt-get install shellcheck
+  435  shellcheck pre_commit 
+  436  cd ../
+  437  ll
+  438  vim hooks/pre_commit 
+  439  shellcheck hooks/pre_commit 
+  440  ./hooks/pre_commit 
+  441  vim hooks/pre_commit 
+  442  ./hooks/pre_commit 
+  443  vim hooks/pre_commit 
+  444  ./hooks/pre_commit 
+  445  vim hooks/pre_commit 
+  446  ./hooks/pre_commit 
+  447  ls -lart
+  448  mkdir -p .git/hooks
+  449  cd .git/hooks/
+  450  ln -s ../../hooks/pre_commit pre-commit
+  451  ls -lart
+  452  cd ../../
+  453  git add hooks/pre_commit 
+  454  git commit -am "Ecriture d'un script de pre-commit pour vérifier les scripts yml et bash"
+  455  ls -lrt
+  456  vim bootstrap.yml 
+  457  ./hooks/pre_commit 
+  458  ansible -m fetch -a "flat=yes src=/etc/ssh/sshd_config dest=sshd_config" node1 
+  459  ls -lrt
+  460  rm -rf sshd_config
+  461  ansible -m fetch -a "flat=yes src=/etc/ssh/sshd_config dest=sshd_config" node1 
+  462  ls -lrt
+  463  ./hooks/pre_commit 
+  464  vim bootstrap.yml 
+  465  ./hooks/pre_commit 
+  466  ansible-playbook --check --diff bootstrap_bis.yml 
+  467  ansible-playbook --check --diff bootstrap.yml 
+  468  vim bootstrap.yml 
+  469  ansible -m setup node1
+  470  ls -lrt
+  471  echo 'ssh -o PubkeyAuthentication=no root@node1 => connexion sans cle ssh' >> docs.txt 
+  472  cat docs.txt 
+  473  ls -lrt
+  474  cp -p bootstrap.yml bootstrap_version1.yml
+  475  vim bootstrap_version1.yml
+  476  git commit -am bootstrap_version1.yml "Ajout d'un booucle sur fichier pour les cle ssh"
+  477* git commit -m bootstrap_version1.yml "Ajout d'un booucle sur fichier pour les cle ssh" 
+  478  git commit bootstrap_version1.yml -am "Ajout d'un booucle sur fichier pour les cle ssh"
+  479  git commit bootstrap_version1.yml -m "Ajout d'un booucle sur fichier pour les cle ssh"
+  480  git commit -am "Ajout d'un booucle sur fichier pour les cle ssh"
+  481  vim bootstrap_version1.yml
+  482  git commit -am "Ajout d'un booucle sur fichier pour les cle ssh"
+  483  ansible-playbook bootstrap_version1.yml 
+  484  tree
+  485  sudo apt install tree
+  486  tree
+  487  ansible-playbook bootstrap_version1.yml 
+  488  vim bootstrap_version1.yml
+  489  git commit -am "Ajout d'une boucle de package pour les installer"
+  490  vim bootstrap_version1.yml
+  491  git commit -am "Ajout d'une boucle de package pour les installer"
+  492  git add bootstrap_version1.yml
+  493  git commit -am "Ajout d'une boucle de package pour les installer"
+  494  ansible-playbook bootstrap_version1.yml 
+  495  vim bootstrap_version1.yml
+  496  git commit -am "Ajout d'une boucle de package pour les installer"
+  497  git commit -am "Ajout d'une boucle de package pour les installer version corrigée"
+  498  git add bootstrap_version1.yml
+  499  git commit -am "Ajout d'une boucle de package pour les installer version corrigée"
+  500  git push
+  501  git diff
+  502  ansible-playbook bootstrap_version1.yml 
+  503  vim bootstrap_version1.yml
+  504  git add bootstrap_version1.yml 
+  505  git commit _am "Editer le fichier /etc/motd"
+  506  git commit -am "Editer le fichier /etc/motd"
+  507  ansible-playbook bootstrap_version1.yml 
+  508  git commit -am "Editer le fichier /etc/motd"
+  509  vim bootstrap_version1.yml
+  510  git commit -am "Editer le fichier /etc/motd"
+  511  ansible-playbook bootstrap_version1.yml 
+  512  vim bootstrap_version1.yml
+  513  git commit -am "Editer le fichier /etc/motd"
+  514  ansible-playbook bootstrap_version1.yml 
+  515  vim bootstrap_version1.yml
+  516  ansible -m fetch -a "flat=yes src=/etc/issue dest=issue" node1
+  517  ls -lrt
+  518  git add bootstrap_version1.yml
+  519  hostname
+  520  git commit -am "Editer le fichier /etc/issue"
+  521  ansible-playbook bootstrap_version1.yml
+  522  vim bootstrap_version1.yml
+  523  git commit -am "Editer le fichier /etc/issue"
+  524  ansible-playbook bootstrap_version1.yml
+  525  vim bootstrap_version1.yml
+  526  git commit -am "Editer le fichier /etc/issue"
+  527  ansible-playbook bootstrap_version1.yml
+  528  vim bootstrap_version1.yml
+  529  git commit -am "Définition de l'hostname de la machine"
+  530  ansible-playbook bootstrap_version1.yml 
+  531  vim bootstrap_version1.yml
+  532  git commit -am "Définition de l'hostname de la machine"
+  533  ansible-playbook bootstrap_version1.yml 
+  534  cat /etc/hosts
+  535  vim /etc/hosts
+  536  sudo vim /etc/hosts
+  537  ls -lrt
+  538  vim hosts 
+  539  sudo vim /etc/hosts
+  540  vim hosts 
+  541  git commit -am "Ajout hosts nodetemplate"
+  542  ansible-playbook bootstrap_version1.yml 
+  543  echo 'ansible-playbook bootstrap_version1.yml -l nodeTemplate = permet d'executer le playbook que sur la machine nodeTemplate'>> docs.txt 
+  544  echo 'ansible-playbook bootstrap_version1.yml -l nodeTemplate = permet d'executer le playbook que sur la machine nodeTemplate' >> docs.txt 
+  545  echo "ansible-playbook bootstrap_version1.yml -l nodeTemplate = permet d'executer le playbook que sur la machine nodeTemplate" >> docs.txt 
+  546  cat docs.txt 
+  547  vim hosts 
+  548  ansible-playbook bootstrap_version1.yml 
+  549  git commit -am "Suppression de la machine nodeTemplate dans hosts"
+  550  git diff
+  551  history >> Compte_formation_ansible_27-07-2017

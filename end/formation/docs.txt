@@ -1,0 +1,89 @@
+1- Installation d'ansible sur la workstation Ubuntu
+
+	=> Prérequis: python-dev libssl-dev libffi-dev python-pip
+
+git init formation
+git add fichier
+git commit -m "Premier doc"
+
+apt-get install python-dev libssl-dev libffi-dev python-pip
+
+sudo su -
+pip install ansible
+
+2- Generation de cle ssh
+
+git config --global user.name "Baba GADJI"
+git config --global user.email gadjibaba@gmail.com
+ ip => 192.168.75.63
+
+ssh-keygen
+ssh-copy-id root@192.168.75.63
+ssh-copy-id ssh
+ssh root@192.168.75.63
+
+Editer le fichier /etc/hosts en renseignant l'IP de la machine distante et son nom 
+192.168.75.63 node1
+
+
+tester la connectivite d'une machine avec ansible
+ ansible -i hosts -m ping
+
+
+tester une commande shell
+
+ansible -m command -a "ls -lrt /tmp" node1
+ansible -m shell -a "ls -lrt /tmp" node1
+ansible -m user -a "user=baba" node1
+
+Exercice:
+1- avoir un utilisateur git
+ansible -m user -a "user=git state=present" node1
+
+2- installer le paquet git
+ansible -m yum -a "name=git state=present" node1
+
+3- Vérifier que /home/git existe
+ansible -m file -a "path=/home/git state=directory owner=git group=git mode=0755" node1
+
+4- Mettre ma clé SSH dans les clés autorisées pour git
+
+ansible -m file -a "path=/home/git/.ssh state=directory owner=git group=git mode=0700" gitservers
+ansible -m copy -a "src=~/.ssh/id_rsa.pub dest=/home/git/.ssh/authorized_keys owner=git group=git mode=0600" gitservers
+
+ou alors
+ansible -m authorized_keys -a "user"
+
+
+Créer depot distant
+se connecter sur la machine distante puis initialiser le git par la commande suivante:
+git init --bare formation.git
+
+
+git remote add origin git@node1:formation.git
+git push --set-upstream origin master
+
+
+configuration vim pour l'indentation
+
+tagiaire@T3620-42C:~$ cat .vimrc 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+:set shiftwidth=4
+:set autoindent
+ansible-playbook --syntax-check ansible_git.yml
+ansible-playbook --check ansible_git.yml
+ansible-playbook --step webserver.yml
+sudo apt-get install shellcheck
+ssh -o PubkeyAuthentication=no root@node1 => connexion sans cle ssh
+ansible-playbook bootstrap_version1.yml -l nodeTemplate = permet d'executer le playbook que sur la machine nodeTemplate
+ansible -m setup -a filter=ansible_distribution all
+
+
+Pour avoir le résultat du module setup sur une seule ligne utiliser l'option o
+
+ansible -m setup -a filter=ansible_distribution all
+ansible -m setup -a filter=ansible_distribution all
+ansible -m setup -a filter=ansible_distribution all
+ansible -m setup -a filter=ansible_distribution all
+ansible -m setup -a filter=ansible_distribution all
+ansible-playbook bootstrap_version2.yml --skip-tag install => permet de réaliser le playbook sauf le tag install

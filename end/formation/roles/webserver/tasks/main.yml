@@ -1,0 +1,55 @@
+- name: Récupération des variables dynamiques
+  include_vars: "{{ item}}"
+  with_first_found:
+    - vars/webserver_vars_{{ ansible_os_family }}.yml
+    - vars/webserver_vars.yml
+
+- name: Variable webserver_apache_name
+  debug:
+    var: webserver_apache_name
+
+- name: Mise à jour du cache pour APT
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when: ansible_os_family == 'Debian'
+- name: Installation d'apache 
+  package: 
+    name: "{{ webserver_apache_name }}"
+    state: present
+
+- name: Création du répertoire /var/www/html
+  file:
+    path: /var/www/html
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Création du fichier index.html
+  file:
+    path: /var/www/html/index.html
+    state: touch
+    owner: root
+    group: root
+    mode: 0664
+
+- name: Contenu du fichier
+  template:
+    dest: /var/www/html/index.html
+    src: index.html.j2
+  tags: [fichier]
+
+- name: Activation du service httpd
+  service:
+    name: "{{ webserver_apache_name }}"
+    enabled: yes
+    state: started
+
+- name: Activation du firewall
+  when: ansible_os_family == 'RedHat'
+  firewalld:
+    service: http
+    state: enabled
+    permanent: true
+    immediate: true

@@ -1,0 +1,40 @@
+- hosts: webservers
+  tasks:
+    - name: Installation d'apache 
+      yum: 
+        name: httpd
+        state: present
+
+    - name: Création du répertoire /var/www/html
+      file:
+        path: /var/www/html
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Création du fichier index.html
+      file:
+        path: /var/www/html/index.html
+        state: touch
+        owner: root
+        group: root
+        mode: 0664
+
+    - name: Contenu du fichier
+      copy:
+        dest: /var/www/html/index.html
+        content: "coucou depuis ansible !"
+
+    - name: Activation du service httpd
+      service:
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: Activation du firewall
+      firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true

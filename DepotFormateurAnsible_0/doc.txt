@@ -1,0 +1,3 @@
+1) installation d'ansible sur la workstation Ubuntu
+	=> Prérequis : python-dev libssl-dev libffi-dev python-pip
+	(Sur Ubuntu/Debian : apt install liste de packages)

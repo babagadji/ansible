@@ -1,0 +1,6 @@
+Bonjour, vous êtes sur {{ inventory_hostname }} est géré par Ansible !
+Liste des IPs :
+{% for ip in ansible_all_ipv4_addresses %}
+	- {{ ip }}
+{% endfor %}
+

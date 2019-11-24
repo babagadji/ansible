@@ -1,0 +1,63 @@
+- hosts: all
+#On utilise handlers pour que si y'a modification du fichier de conf de ssh on relance le service sshd
+  handlers:
+    - name: Reload SSH
+      systemd:
+        name: sshd
+        state: reloaded 
+  tasks:
+    - name: dépoiement de ma clé ssh dans node1
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ item }}"
+      with_file:
+        - ~/.ssh/id_rsa.pub
+
+    - name: Installation de la liste des paquets
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - openssh-server
+        - bash-completion
+        - tmux
+        - tree
+
+    - name: Autoriser uniquement la connexion  par clé ssh pour root, hors de question de rentrer son mot de passe
+      copy:
+        src: sshd_config
+        dest: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        mode: 0600
+      notify: Reload SSH
+
+
+    - name: Démarrage du service sshd
+      systemd:
+        name: sshd
+        enabled: yes
+        state: started 
+
+    - name: Uniformisation du fichier /etc/motd de machines
+      copy:
+        content: "Bonjour, ce systeme est géré par Ansible !\n"
+        dest: /etc/motd
+
+    - name: Affichage de l'adresse IP à la connexion de la machine avec module lineinfile
+      lineinfile:
+        dest: /etc/issue
+        line: '\4{eth0}'
+
+    - name: Affichage de l'adresse IP à la connexion de la machine avec module copy
+      copy:
+        src: issue
+        dest: /etc/issue
+        owner: root
+        group: root
+        mode: 0644
+   
+    - name: Définition de l'hostname de la machine
+      hostname: 
+        name: "{{ inventory_hostname }}"

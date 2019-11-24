@@ -1,0 +1,13 @@
+node1
+node2
+node3 pack=apache2
+[gitservers]
+node1
+node2
+node3
+[webservers]
+node1 webserver_color=blue
+node2
+node3
+[webservers:vars]
+webserver_color=green

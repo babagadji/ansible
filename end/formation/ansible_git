@@ -1,0 +1,5 @@
+ansible -m user -a "user=git state=present" gitservers
+ansible -m yum -a "name=git state=present" gitservers
+ansible -m file -a "path=/home/git state=directory owner=git group=git mode=0755" gitservers
+ansible -m file -a "path=/home/git/.ssh state=directory owner=git group=git mode=0700" gitservers
+ansible -m copy -a "src=~/.ssh/id_rsa.pub dest=/home/git/.ssh/authorized_keys owner=git group=git mode=0600" gitservers

@@ -1,0 +1,14 @@
+node1
+node2
+node3
+
+[gitservers]
+node1
+
+[webservers]
+node1 webserver_color=blue
+node2
+node3
+
+[webservers:vars]
+webserver_color=red

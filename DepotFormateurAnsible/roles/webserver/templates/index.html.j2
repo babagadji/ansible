@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Machine {{ inventory_hostname }} pilotée par Ansible</title>
+</head>
+
+<body style="color: {{ webserver_color }}">
+	<h1>Coucou sur {{ inventory_hostname }} depuis Ansible !</h1>
+	<h2>Je tourne sur {{ ansible_distribution }} v{{ ansible_distribution_version }}
+		de type {{ ansible_os_family }}, avec un noyau {{ ansible_kernel }}</h2>
+	<p>J'ai l'IP : {{ ansible_default_ipv4.address }}</p>
+	<ul>
+	{% for mountd in ansible_mounts %}
+		<li>Le point de montage {{ mountd.mount }} correspond à {{ mountd.device }} et est formaté en {{ mountd.fstype }}</li>
+	{% endfor %}
+	</ul>
+</body>
+
+</html> 

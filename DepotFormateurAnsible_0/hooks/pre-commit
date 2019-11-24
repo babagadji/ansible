@@ -1,0 +1,5 @@
+#! /bin/bash
+set -e -o pipefail
+
+shellcheck hooks/*
+ansible-playbook --syntax-check ./*.yml >/dev/null

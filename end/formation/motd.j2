@@ -1,0 +1,5 @@
+Bonjour, vous etes sur \033[01,31m  {{ inventory_hostname }} \033\[0m est gérée par  ansible !
+Liste des IP:
+{% for ip in ansible_all_ipv4_addresses %}
+	- {{ ip }}
+[{% endfor %}

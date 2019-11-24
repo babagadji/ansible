@@ -1,0 +1,29 @@
+- name: Création du user git
+  user:
+    name: git
+    state: present
+- name: Installation gu package git
+  package:
+    name: git
+    state: present
+- name: Création du répertoire /home/git
+  file:
+    path: /home/git
+    state: directory
+    owner: git
+    group: git
+    mode: 0755
+- name: Création du répertoire /home/git/.ssh
+  file:
+    path: /home/git/.ssh
+    state: directory
+    owner: git
+    group: git
+    mode: 0700
+- name: Copie de la clé ssh sur les clés autorisées pour git
+  copy:
+    src: ~/.ssh/id_rsa.pub
+    dest: /home/git/.ssh/authorized_keys
+    owner: git
+    group: git      
+    mode: 0600 

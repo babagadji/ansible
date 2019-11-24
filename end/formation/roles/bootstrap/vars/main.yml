@@ -1,0 +1,6 @@
+bootstrap_packages:
+  - openssh-server
+  - bash-completion
+  - tmux
+  - tree
+

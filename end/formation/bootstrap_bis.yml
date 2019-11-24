@@ -1,0 +1,31 @@
+- hosts: all
+#On utilise handlers pour que si y'a modification du fichier de conf de ssh on relance le service sshd
+  handlers:
+    - name: Reload SSH
+      systemd:
+        name: sshd
+        state: reloaded 
+  tasks:
+    - name: dépoiement de ma clé ssh dans node1
+      authorized_key:
+        user: root
+        state: present
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFLKkvf4+Umf7JgbSQvi7TVR4CIAiGHoUdLhWBGkHy2Pwu3G+Oxsbnuu9APUAIznJuftI7PdKl+Ki1XxRCc1XEfvQzuM6Q/ikW/do41jHtHlhTVx/jKxCZwv7qey2ahJwCeTjQdTzfmmXSU+Xevo6Me7KhmX24iS5Lidm6Br1/4wjFO6BMC+piP5I03yeOpybXMdhrYK8Az965JjQLlwELVmii9TvkIIHIH/81UYjNVWtw3OaFwgYuncHLh8RyPos+8assPyK5TlmcIT0mVxYK+Wnp2S84WGLYWM6IKdwGH7Wi4f/upMWHFpQKTPOUTHLHkCx4ENr3ngKADMmi4/kF stagiaire@T3620-42C"
+    - name: Vérificication si le package openssh-server est installé
+      package:
+        name: openssh-server
+        state: present
+
+    - name: Autoriser uniquement la connexion  par clé ssh pour root, hors de question de rentrer son mot de passe
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PermitRootLogin .+'
+        line: 'PermitRootLogin without-password'
+      notify: Reload SSH
+
+
+    - name: Démarrage du service sshd
+      systemd:
+        name: sshd
+        enabled: yes
+        state: started 

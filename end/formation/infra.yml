@@ -1,0 +1,9 @@
+- hosts: webservers
+  roles:
+    - bootstrap
+- hosts: gitservers
+  roles:
+    - gitserver
+- hosts: webservers
+  roles:
+    - webserver

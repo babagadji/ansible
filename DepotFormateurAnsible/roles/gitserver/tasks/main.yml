@@ -1,0 +1,23 @@
+- user:
+    name: git
+    state: present
+- yum:
+    name: git
+    state: present
+- file:
+    path: /home/git
+    state: directory
+    owner: git
+    group: git
+    mode: 0755
+- file:
+    path: /home/git/.ssh
+    state: directory
+    owner: git
+    group: git
+    mode: 0700
+- authorized_key:
+    key: "{{ lookup('file', item) }}"
+    user: git
+  with_fileglob:
+    - "*.pub"
